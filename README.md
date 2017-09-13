@@ -25,5 +25,13 @@
 3. Presenter will use Wireframe to perform the navigation.
 4. Wireframe is also a place to handle navigation transition animations.
 
+### Module
+1. Usually, implement the module interface.
+2. When another module wants to present this one, its Presenter will implement the module delegate protocol.
+
+### Testing
+1. Start with the Interactor.
+2. If you develop the Interactor first, followed by the Presenter, you get to build out a suite of tests around those layers first and lay the foundation for implementing those use cases. 
+
 ### Reference
 [objc.io](https://www.objc.io/issues/13-architecture/viper/)
