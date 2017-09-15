@@ -7,8 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9B1095A31F6B79D100194927 /* Credentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B1095951F6B79D100194927 /* Credentials.swift */; };
+		9B1095A41F6B79D100194927 /* ImageProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B1095961F6B79D100194927 /* ImageProvider.swift */; };
+		9B1095A51F6B79D100194927 /* ImageTweet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B1095971F6B79D100194927 /* ImageTweet.swift */; };
+		9B1095A61F6B79D100194927 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B1095981F6B79D100194927 /* Router.swift */; };
+		9B1095A71F6B79D100194927 /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B1095991F6B79D100194927 /* State.swift */; };
+		9B1095A81F6B79D100194927 /* UIAlertController+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B10959A1F6B79D100194927 /* UIAlertController+Helpers.swift */; };
+		9B1095A91F6B79D100194927 /* WebService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B10959B1F6B79D100194927 /* WebService.swift */; };
+		9B1095AA1F6B79D100194927 /* ImageDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B10959D1F6B79D100194927 /* ImageDetailViewController.swift */; };
+		9B1095AB1F6B79D100194927 /* ImageDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B10959E1F6B79D100194927 /* ImageDetailViewModel.swift */; };
+		9B1095AC1F6B79D100194927 /* ImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B1095A01F6B79D100194927 /* ImageCell.swift */; };
+		9B1095AD1F6B79D100194927 /* ImageListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B1095A11F6B79D100194927 /* ImageListViewController.swift */; };
+		9B1095AE1F6B79D100194927 /* ImageListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B1095A21F6B79D100194927 /* ImageListViewModel.swift */; };
+		9B1095B01F6B7A2200194927 /* TwitterInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9B1095AF1F6B7A2200194927 /* TwitterInfo.plist */; };
 		9B4BE8081F668B4C005F66FF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4BE8071F668B4C005F66FF /* AppDelegate.swift */; };
-		9B4BE80A1F668B4C005F66FF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4BE8091F668B4C005F66FF /* ViewController.swift */; };
 		9B4BE80D1F668B4C005F66FF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9B4BE80B1F668B4C005F66FF /* Main.storyboard */; };
 		9B4BE80F1F668B4C005F66FF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9B4BE80E1F668B4C005F66FF /* Assets.xcassets */; };
 		9B4BE8121F668B4C005F66FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9B4BE8101F668B4C005F66FF /* LaunchScreen.storyboard */; };
@@ -26,9 +38,21 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9B1095951F6B79D100194927 /* Credentials.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Credentials.swift; sourceTree = "<group>"; };
+		9B1095961F6B79D100194927 /* ImageProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageProvider.swift; sourceTree = "<group>"; };
+		9B1095971F6B79D100194927 /* ImageTweet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageTweet.swift; sourceTree = "<group>"; };
+		9B1095981F6B79D100194927 /* Router.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
+		9B1095991F6B79D100194927 /* State.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = State.swift; sourceTree = "<group>"; };
+		9B10959A1F6B79D100194927 /* UIAlertController+Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIAlertController+Helpers.swift"; sourceTree = "<group>"; };
+		9B10959B1F6B79D100194927 /* WebService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebService.swift; sourceTree = "<group>"; };
+		9B10959D1F6B79D100194927 /* ImageDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageDetailViewController.swift; sourceTree = "<group>"; };
+		9B10959E1F6B79D100194927 /* ImageDetailViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageDetailViewModel.swift; sourceTree = "<group>"; };
+		9B1095A01F6B79D100194927 /* ImageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageCell.swift; sourceTree = "<group>"; };
+		9B1095A11F6B79D100194927 /* ImageListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageListViewController.swift; sourceTree = "<group>"; };
+		9B1095A21F6B79D100194927 /* ImageListViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageListViewModel.swift; sourceTree = "<group>"; };
+		9B1095AF1F6B7A2200194927 /* TwitterInfo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = TwitterInfo.plist; sourceTree = "<group>"; };
 		9B4BE8041F668B4C005F66FF /* TryVIPER.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TryVIPER.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9B4BE8071F668B4C005F66FF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		9B4BE8091F668B4C005F66FF /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		9B4BE80C1F668B4C005F66FF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		9B4BE80E1F668B4C005F66FF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9B4BE8111F668B4C005F66FF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -56,6 +80,39 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9B1095941F6B79D100194927 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				9B1095951F6B79D100194927 /* Credentials.swift */,
+				9B1095961F6B79D100194927 /* ImageProvider.swift */,
+				9B1095971F6B79D100194927 /* ImageTweet.swift */,
+				9B1095981F6B79D100194927 /* Router.swift */,
+				9B1095991F6B79D100194927 /* State.swift */,
+				9B10959A1F6B79D100194927 /* UIAlertController+Helpers.swift */,
+				9B10959B1F6B79D100194927 /* WebService.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		9B10959C1F6B79D100194927 /* ImageDetail */ = {
+			isa = PBXGroup;
+			children = (
+				9B10959D1F6B79D100194927 /* ImageDetailViewController.swift */,
+				9B10959E1F6B79D100194927 /* ImageDetailViewModel.swift */,
+			);
+			path = ImageDetail;
+			sourceTree = "<group>";
+		};
+		9B10959F1F6B79D100194927 /* ImageList */ = {
+			isa = PBXGroup;
+			children = (
+				9B1095A01F6B79D100194927 /* ImageCell.swift */,
+				9B1095A11F6B79D100194927 /* ImageListViewController.swift */,
+				9B1095A21F6B79D100194927 /* ImageListViewModel.swift */,
+			);
+			path = ImageList;
+			sourceTree = "<group>";
+		};
 		9B4BE7FB1F668B4C005F66FF = {
 			isa = PBXGroup;
 			children = (
@@ -77,12 +134,15 @@
 		9B4BE8061F668B4C005F66FF /* TryVIPER */ = {
 			isa = PBXGroup;
 			children = (
+				9B1095941F6B79D100194927 /* Common */,
+				9B10959C1F6B79D100194927 /* ImageDetail */,
+				9B10959F1F6B79D100194927 /* ImageList */,
 				9B4BE8071F668B4C005F66FF /* AppDelegate.swift */,
-				9B4BE8091F668B4C005F66FF /* ViewController.swift */,
 				9B4BE80B1F668B4C005F66FF /* Main.storyboard */,
 				9B4BE80E1F668B4C005F66FF /* Assets.xcassets */,
 				9B4BE8101F668B4C005F66FF /* LaunchScreen.storyboard */,
 				9B4BE8131F668B4C005F66FF /* Info.plist */,
+				9B1095AF1F6B7A2200194927 /* TwitterInfo.plist */,
 			);
 			path = TryVIPER;
 			sourceTree = "<group>";
@@ -181,6 +241,7 @@
 			files = (
 				9B4BE8121F668B4C005F66FF /* LaunchScreen.storyboard in Resources */,
 				9B4BE80F1F668B4C005F66FF /* Assets.xcassets in Resources */,
+				9B1095B01F6B7A2200194927 /* TwitterInfo.plist in Resources */,
 				9B4BE80D1F668B4C005F66FF /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -199,8 +260,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9B4BE80A1F668B4C005F66FF /* ViewController.swift in Sources */,
+				9B1095A31F6B79D100194927 /* Credentials.swift in Sources */,
+				9B1095AE1F6B79D100194927 /* ImageListViewModel.swift in Sources */,
 				9B4BE8081F668B4C005F66FF /* AppDelegate.swift in Sources */,
+				9B1095AC1F6B79D100194927 /* ImageCell.swift in Sources */,
+				9B1095A91F6B79D100194927 /* WebService.swift in Sources */,
+				9B1095A61F6B79D100194927 /* Router.swift in Sources */,
+				9B1095A41F6B79D100194927 /* ImageProvider.swift in Sources */,
+				9B1095AD1F6B79D100194927 /* ImageListViewController.swift in Sources */,
+				9B1095AB1F6B79D100194927 /* ImageDetailViewModel.swift in Sources */,
+				9B1095A81F6B79D100194927 /* UIAlertController+Helpers.swift in Sources */,
+				9B1095A51F6B79D100194927 /* ImageTweet.swift in Sources */,
+				9B1095AA1F6B79D100194927 /* ImageDetailViewController.swift in Sources */,
+				9B1095A71F6B79D100194927 /* State.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -406,6 +478,7 @@
 				9B4BE8231F668B4C005F66FF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		9B4BE8241F668B4C005F66FF /* Build configuration list for PBXNativeTarget "TryVIPERTests" */ = {
 			isa = XCConfigurationList;
@@ -414,6 +487,7 @@
 				9B4BE8261F668B4C005F66FF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
