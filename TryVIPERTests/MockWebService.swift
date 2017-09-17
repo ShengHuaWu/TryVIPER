@@ -6,7 +6,7 @@
 //  Copyright © 2017 ShengHua Wu. All rights reserved.
 //
 
-import XCTest
+import Nimble
 @testable import TryVIPER
 
 final class MockWebService<U>: WebServiceProtocol {
@@ -22,8 +22,8 @@ final class MockWebService<U>: WebServiceProtocol {
         completion(givenResult as Any as! Result<T>)
     }
     
-    func verify(url: URL, file: StaticString = #file, line: UInt = #line) {
-        XCTAssertEqual(loadCallCount, 1, "call count", file: file, line: line)
-        XCTAssertEqual(expectedResource.url, url, "url", file: file, line: line)
+    func verify(url: URL, file: FileString = #file, line: UInt = #line) {
+        expect(self.loadCallCount, file: file, line: line).to(equal(1))
+        expect(self.expectedResource.url, file: file, line: line).to(equal(url))
     }
 }
