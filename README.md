@@ -31,7 +31,9 @@
 
 ### Testing
 1. Start with the Interactor.
-2. If you develop the Interactor first, followed by the Presenter, you get to build out a suite of tests around those layers first and lay the foundation for implementing those use cases. 
+2. If you develop the Interactor first, followed by the Presenter, you get to build out a suite of tests around those layers first and lay the foundation for implementing those use cases.
 
 ### Reference
-[objc.io](https://www.objc.io/issues/13-architecture/viper/)
+* [objc.io](https://www.objc.io/issues/13-architecture/viper/)
+* [Building iOS App with VIPER Architecture](https://blog.mindorks.com/building-ios-app-with-viper-architecture-8109acc72227)
+* [The Good, The Bad and the Ugly of VIPER architecture](https://medium.com/@ankoma22/the-good-the-bad-and-the-ugly-of-viper-architecture-for-ios-apps-7272001b5347)
