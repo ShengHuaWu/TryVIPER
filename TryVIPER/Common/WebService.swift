@@ -103,7 +103,7 @@ final class WebService {
     
     func load<T>(resource: Resource<T>, completion: @escaping (Result<T>) -> ()) {
         let request = URLRequest(resource: resource)
-        session.dataTask(with: request) { (data, response, error) in
+        session.dataTask(with: request) { [weak self] (data, response, error) in
             if let error = error {
                 DispatchQueue.main.async {
                     completion(.failure(error))
@@ -124,7 +124,7 @@ final class WebService {
                 }
             }
             
-            self.session.finishTasksAndInvalidate()
+            self?.session.finishTasksAndInvalidate()
         }.resume()
     }
 }

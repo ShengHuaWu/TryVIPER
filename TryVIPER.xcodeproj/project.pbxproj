@@ -24,7 +24,9 @@
 		9B4BE80D1F668B4C005F66FF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9B4BE80B1F668B4C005F66FF /* Main.storyboard */; };
 		9B4BE80F1F668B4C005F66FF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9B4BE80E1F668B4C005F66FF /* Assets.xcassets */; };
 		9B4BE8121F668B4C005F66FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9B4BE8101F668B4C005F66FF /* LaunchScreen.storyboard */; };
-		9B4BE81D1F668B4C005F66FF /* TryVIPERTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4BE81C1F668B4C005F66FF /* TryVIPERTests.swift */; };
+		9B5402661F6E1A1100ADA179 /* ImageListInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B5402651F6E1A1100ADA179 /* ImageListInteractor.swift */; };
+		9B54026A1F6E1FDC00ADA179 /* ImageListInteractorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B5402691F6E1FDC00ADA179 /* ImageListInteractorTests.swift */; };
+		9B54026C1F6E20C900ADA179 /* MockWebService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B54026B1F6E20C900ADA179 /* MockWebService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,8 +60,10 @@
 		9B4BE8111F668B4C005F66FF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9B4BE8131F668B4C005F66FF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9B4BE8181F668B4C005F66FF /* TryVIPERTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TryVIPERTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		9B4BE81C1F668B4C005F66FF /* TryVIPERTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TryVIPERTests.swift; sourceTree = "<group>"; };
 		9B4BE81E1F668B4C005F66FF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9B5402651F6E1A1100ADA179 /* ImageListInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ImageListInteractor.swift; path = Modules/ImageList/ImageListInteractor.swift; sourceTree = "<group>"; };
+		9B5402691F6E1FDC00ADA179 /* ImageListInteractorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageListInteractorTests.swift; sourceTree = "<group>"; };
+		9B54026B1F6E20C900ADA179 /* MockWebService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockWebService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -137,6 +141,7 @@
 				9B1095941F6B79D100194927 /* Common */,
 				9B10959C1F6B79D100194927 /* ImageDetail */,
 				9B10959F1F6B79D100194927 /* ImageList */,
+				9B5402671F6E1A1700ADA179 /* Modules */,
 				9B4BE8071F668B4C005F66FF /* AppDelegate.swift */,
 				9B4BE80B1F668B4C005F66FF /* Main.storyboard */,
 				9B4BE80E1F668B4C005F66FF /* Assets.xcassets */,
@@ -150,10 +155,27 @@
 		9B4BE81B1F668B4C005F66FF /* TryVIPERTests */ = {
 			isa = PBXGroup;
 			children = (
-				9B4BE81C1F668B4C005F66FF /* TryVIPERTests.swift */,
 				9B4BE81E1F668B4C005F66FF /* Info.plist */,
+				9B5402691F6E1FDC00ADA179 /* ImageListInteractorTests.swift */,
+				9B54026B1F6E20C900ADA179 /* MockWebService.swift */,
 			);
 			path = TryVIPERTests;
+			sourceTree = "<group>";
+		};
+		9B5402671F6E1A1700ADA179 /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				9B5402681F6E1A2B00ADA179 /* ImageList */,
+			);
+			name = Modules;
+			sourceTree = "<group>";
+		};
+		9B5402681F6E1A2B00ADA179 /* ImageList */ = {
+			isa = PBXGroup;
+			children = (
+				9B5402651F6E1A1100ADA179 /* ImageListInteractor.swift */,
+			);
+			name = ImageList;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -210,6 +232,7 @@
 					};
 					9B4BE8171F668B4C005F66FF = {
 						CreatedOnToolsVersion = 8.3.3;
+						LastSwiftMigration = 0830;
 						ProvisioningStyle = Automatic;
 						TestTargetID = 9B4BE8031F668B4C005F66FF;
 					};
@@ -272,6 +295,7 @@
 				9B1095A81F6B79D100194927 /* UIAlertController+Helpers.swift in Sources */,
 				9B1095A51F6B79D100194927 /* ImageTweet.swift in Sources */,
 				9B1095AA1F6B79D100194927 /* ImageDetailViewController.swift in Sources */,
+				9B5402661F6E1A1100ADA179 /* ImageListInteractor.swift in Sources */,
 				9B1095A71F6B79D100194927 /* State.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -280,7 +304,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9B4BE81D1F668B4C005F66FF /* TryVIPERTests.swift in Sources */,
+				9B54026C1F6E20C900ADA179 /* MockWebService.swift in Sources */,
+				9B54026A1F6E1FDC00ADA179 /* ImageListInteractorTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -436,10 +461,12 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = TryVIPERTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.shenghuawu.TryVIPERTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TryVIPER.app/TryVIPER";
 			};
@@ -450,6 +477,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = TryVIPERTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.shenghuawu.TryVIPERTests;
