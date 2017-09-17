@@ -34,6 +34,10 @@ final class ImageListInteractorSpec: QuickSpec {
                 
                 userDefaults.removePersistentDomain(forName: #file)
             }
+            
+            it("not exist") {
+                expect(interactor.hasToken()).to(equal(false))
+            }
         }
         
         describe("fetch bearer token") { 
