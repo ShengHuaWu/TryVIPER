@@ -74,6 +74,10 @@ extension UserDefaults {
     }
     
     func bearerToken() -> String? {
-        return string(forKey: UserDefaults.tokenKey)
+        guard let token = string(forKey: UserDefaults.tokenKey), !token.isEmpty else {
+            return nil
+        }
+        
+        return token
     }
 }

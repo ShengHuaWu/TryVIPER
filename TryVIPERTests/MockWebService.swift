@@ -13,11 +13,13 @@ final class MockWebService<U>: WebServiceProtocol {
     // MARK: Properties
     private var loadCallCount = 0
     private var expectedResource: Resource<U>!
+    var givenResult: Result<U>!
     
     // MARK: Public Methods
     func load<T>(resource: Resource<T>, completion: @escaping (Result<T>) -> ()) {
         loadCallCount += 1
         expectedResource = resource as Any as! Resource<U>
+        completion(givenResult as Any as! Result<T>)
     }
     
     func verify(url: URL, file: StaticString = #file, line: UInt = #line) {
