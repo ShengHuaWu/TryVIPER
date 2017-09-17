@@ -51,7 +51,20 @@ final class ImageListInteractorTests: XCTestCase {
         interactor.fetchBearerToken(with: mockWebService)
         
         mockWebService.verify(url: bearerToken().url)
-        mockOutput.verify()
+        mockOutput.verify(hasError: false)
+    }
+    
+    func testFetchBearerTokenWithFailure() {
+        let mockWebService = MockWebService<Bool>()
+        mockWebService.givenResult = .failure(SerializationError.missing("token"))
+        
+        let mockOutput = MockImageListInteractorOutput()
+        interactor.output = mockOutput
+        
+        interactor.fetchBearerToken(with: mockWebService)
+        
+        mockWebService.verify(url: bearerToken().url)
+        mockOutput.verify(hasError: true)
     }
     
     func testFetchTweetsWithSuccess() {
@@ -64,16 +77,28 @@ final class ImageListInteractorTests: XCTestCase {
         interactor.fetchTweets(with: mockWebService)
         
         mockWebService.verify(url: ImageTweet.tweets.url)
-        mockOutput.verify()
+        mockOutput.verify(hasError: false)
     }
     
-    // TODO: Implement failure cases
+    func testFetchTweetsWithFailure() {
+        let mockWebService = MockWebService<[ImageTweet]>()
+        mockWebService.givenResult = .failure(SerializationError.missing("token"))
+        
+        let mockOutput = MockImageListInteractorOutput()
+        interactor.output = mockOutput
+        
+        interactor.fetchTweets(with: mockWebService)
+        
+        mockWebService.verify(url: ImageTweet.tweets.url)
+        mockOutput.verify(hasError: true)
+    }
 }
 
 // MARK: - Mock Image List Interactor Output
 final class MockImageListInteractorOutput: ImageListInteractorOutput {
     // MARK: Properties
     private var callCount = 0
+    private var hasError = false
     
     // MARK: Public Methods
     func endFetchingToken() {
@@ -86,9 +111,11 @@ final class MockImageListInteractorOutput: ImageListInteractorOutput {
     
     func has(error: Error) {
         callCount += 1
+        hasError = true
     }
     
-    func verify(file: StaticString = #file, line: UInt = #line) {
+    func verify(hasError: Bool, file: StaticString = #file, line: UInt = #line) {
         XCTAssertEqual(callCount, 1, "call count", file: file, line: line)
+        XCTAssertEqual(self.hasError, hasError, "has error", file: file, line: line)
     }
 }
