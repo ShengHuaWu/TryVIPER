@@ -20,6 +20,7 @@
 		9B1095AD1F6B79D100194927 /* ImageListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B1095A11F6B79D100194927 /* ImageListViewController.swift */; };
 		9B1095AE1F6B79D100194927 /* ImageListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B1095A21F6B79D100194927 /* ImageListViewModel.swift */; };
 		9B1095B01F6B7A2200194927 /* TwitterInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9B1095AF1F6B7A2200194927 /* TwitterInfo.plist */; };
+		9B2D720A1F6FDE6800F8F4DB /* ImageDetailInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2D72091F6FDE6800F8F4DB /* ImageDetailInteractor.swift */; };
 		9B4BE8081F668B4C005F66FF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4BE8071F668B4C005F66FF /* AppDelegate.swift */; };
 		9B4BE80D1F668B4C005F66FF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9B4BE80B1F668B4C005F66FF /* Main.storyboard */; };
 		9B4BE80F1F668B4C005F66FF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9B4BE80E1F668B4C005F66FF /* Assets.xcassets */; };
@@ -71,6 +72,7 @@
 		9B1095A11F6B79D100194927 /* ImageListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageListViewController.swift; sourceTree = "<group>"; };
 		9B1095A21F6B79D100194927 /* ImageListViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageListViewModel.swift; sourceTree = "<group>"; };
 		9B1095AF1F6B7A2200194927 /* TwitterInfo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = TwitterInfo.plist; sourceTree = "<group>"; };
+		9B2D72091F6FDE6800F8F4DB /* ImageDetailInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ImageDetailInteractor.swift; path = Modules/ImageDetail/ImageDetailInteractor.swift; sourceTree = "<group>"; };
 		9B4BE8041F668B4C005F66FF /* TryVIPER.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TryVIPER.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9B4BE8071F668B4C005F66FF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9B4BE80C1F668B4C005F66FF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -139,6 +141,14 @@
 			path = ImageList;
 			sourceTree = "<group>";
 		};
+		9B2D720B1F6FDE6D00F8F4DB /* ImageDetail */ = {
+			isa = PBXGroup;
+			children = (
+				9B2D72091F6FDE6800F8F4DB /* ImageDetailInteractor.swift */,
+			);
+			name = ImageDetail;
+			sourceTree = "<group>";
+		};
 		9B4BE7FB1F668B4C005F66FF = {
 			isa = PBXGroup;
 			children = (
@@ -188,6 +198,7 @@
 		9B5402671F6E1A1700ADA179 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				9B2D720B1F6FDE6D00F8F4DB /* ImageDetail */,
 				9B5402681F6E1A2B00ADA179 /* ImageList */,
 			);
 			name = Modules;
@@ -319,6 +330,7 @@
 				9B1095A31F6B79D100194927 /* Credentials.swift in Sources */,
 				9B1095AE1F6B79D100194927 /* ImageListViewModel.swift in Sources */,
 				9B4BE8081F668B4C005F66FF /* AppDelegate.swift in Sources */,
+				9B2D720A1F6FDE6800F8F4DB /* ImageDetailInteractor.swift in Sources */,
 				9B1095AC1F6B79D100194927 /* ImageCell.swift in Sources */,
 				9B1095A91F6B79D100194927 /* WebService.swift in Sources */,
 				9B1095A61F6B79D100194927 /* Router.swift in Sources */,
