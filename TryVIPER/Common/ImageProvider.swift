@@ -56,6 +56,12 @@ final class ImageProvider {
     }
 }
 
+protocol ImageProviderProtocol {
+    func load(at url: URL, to destinationURL: URL, with exist: (URL) -> Bool, completion: @escaping (Result<URL>) -> ())
+}
+
+extension ImageProvider: ImageProviderProtocol {}
+
 // MARK: - User Defaults Extension
 extension UserDefaults {
     private static let temporaryDirectoryURLKey = "TemporaryDirectoryURLKey"

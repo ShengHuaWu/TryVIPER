@@ -19,7 +19,7 @@ final class ImageDetailInteractor {
     weak var output: ImageDetailInteractorOutput?
     
     // MARK: Public Methods
-    func downloadImage(with imageProvider: ImageProvider = ImageProvider()) {
+    func downloadImage(with imageProvider: ImageProviderProtocol = ImageProvider()) {
         // TODO: Download image and invoke output
     }
 }
