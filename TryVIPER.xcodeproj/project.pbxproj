@@ -32,6 +32,8 @@
 		9BE945F31F6E5BDD0076736A /* Nimble.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9BE945EA1F6E5B840076736A /* Nimble.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		9BE945F41F6E5BDD0076736A /* Quick.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9BE945EB1F6E5B840076736A /* Quick.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		9BE945F61F6E5C760076736A /* ImageListInteractorSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BE945F51F6E5C760076736A /* ImageListInteractorSpec.swift */; };
+		9BF5BD2E1F726FBA000E384F /* ImageDetailInteractorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF5BD2D1F726FBA000E384F /* ImageDetailInteractorTests.swift */; };
+		9BF5BD301F72717E000E384F /* MockImageProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF5BD2F1F72717E000E384F /* MockImageProvider.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -86,6 +88,8 @@
 		9BE945EA1F6E5B840076736A /* Nimble.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Nimble.framework; path = Carthage/Build/iOS/Nimble.framework; sourceTree = "<group>"; };
 		9BE945EB1F6E5B840076736A /* Quick.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quick.framework; path = Carthage/Build/iOS/Quick.framework; sourceTree = "<group>"; };
 		9BE945F51F6E5C760076736A /* ImageListInteractorSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageListInteractorSpec.swift; sourceTree = "<group>"; };
+		9BF5BD2D1F726FBA000E384F /* ImageDetailInteractorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageDetailInteractorTests.swift; sourceTree = "<group>"; };
+		9BF5BD2F1F72717E000E384F /* MockImageProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockImageProvider.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -189,7 +193,9 @@
 			isa = PBXGroup;
 			children = (
 				9B4BE81E1F668B4C005F66FF /* Info.plist */,
+				9BF5BD2D1F726FBA000E384F /* ImageDetailInteractorTests.swift */,
 				9BE945F51F6E5C760076736A /* ImageListInteractorSpec.swift */,
+				9BF5BD2F1F72717E000E384F /* MockImageProvider.swift */,
 				9B54026B1F6E20C900ADA179 /* MockWebService.swift */,
 			);
 			path = TryVIPERTests;
@@ -351,6 +357,8 @@
 			files = (
 				9BE945F61F6E5C760076736A /* ImageListInteractorSpec.swift in Sources */,
 				9B54026C1F6E20C900ADA179 /* MockWebService.swift in Sources */,
+				9BF5BD301F72717E000E384F /* MockImageProvider.swift in Sources */,
+				9BF5BD2E1F726FBA000E384F /* ImageDetailInteractorTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
