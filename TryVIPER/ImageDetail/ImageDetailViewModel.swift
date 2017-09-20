@@ -43,10 +43,3 @@ final class ImageDetailViewModel {
         }
     }
 }
-
-// MARK: - Image Tweet Extension
-extension ImageTweet {
-    var largeMediaURL: URL {
-        return URL(string: mediaURLString + ":large")!
-    }
-}

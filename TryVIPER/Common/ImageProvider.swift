@@ -57,7 +57,14 @@ final class ImageProvider {
 }
 
 protocol ImageProviderProtocol {
+    func load(at url: URL, to destinationURL: URL, completion: @escaping (Result<URL>) -> ())
     func load(at url: URL, to destinationURL: URL, with exist: (URL) -> Bool, completion: @escaping (Result<URL>) -> ())
+}
+
+extension ImageProviderProtocol {
+    func load(at url: URL, to destinationURL: URL, completion: @escaping (Result<URL>) -> ()) {
+        load(at: url, to: destinationURL, with: { FileManager.default.fileExists(atPath: $0.path) }, completion: completion)
+    }
 }
 
 extension ImageProvider: ImageProviderProtocol {}
