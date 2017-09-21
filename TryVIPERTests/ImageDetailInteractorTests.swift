@@ -34,7 +34,19 @@ class ImageDetailInteractorTests: QuickSpec {
                 mockImageProvide.givenResult = .success(url)
                 interactor.downloadImage(with: mockImageProvide)
                 
-                mockOutput.verify()
+                mockOutput.verify(hasError: false)
+                mockImageProvide.verify(url: tweet.largeMediaURL, destinationURL: tweet.fileURL(with: "large"))
+            }
+            
+            it("failure") {
+                let mockOutput = MockImageDetailInteractorOutput()
+                interactor.output = mockOutput
+                
+                let mockImageProvide = MockImageProvider()
+                mockImageProvide.givenResult = .failure(SerializationError.missing("token"))
+                interactor.downloadImage(with: mockImageProvide)
+                
+                mockOutput.verify(hasError: true)
                 mockImageProvide.verify(url: tweet.largeMediaURL, destinationURL: tweet.fileURL(with: "large"))
             }
         }
@@ -52,6 +64,7 @@ extension ImageTweet {
 final class MockImageDetailInteractorOutput: ImageDetailInteractorOutput {
     // MARK: Properties
     private var callCount = 0
+    private var hasError = false
     
     // MARK: Public Methods
     func endDownloadingImage(to url: URL) {
@@ -60,9 +73,11 @@ final class MockImageDetailInteractorOutput: ImageDetailInteractorOutput {
     
     func has(error: Error) {
         callCount += 1
+        hasError = true
     }
     
-    func verify(file: FileString = #file, line: UInt = #line) {
+    func verify(hasError: Bool, file: FileString = #file, line: UInt = #line) {
         expect(self.callCount, file: file, line: line).to(equal(1))
+        expect(self.hasError, file: file, line: line).to(equal(hasError))
     }
 }
