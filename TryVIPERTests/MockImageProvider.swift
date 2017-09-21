@@ -12,14 +12,21 @@ import Nimble
 final class MockImageProvider: ImageProviderProtocol {
     // MARK: Properties
     private var callCount = 0
+    private var expectedURL: URL!
+    private var expectedDestinationURL: URL!
+    var givenResult: Result<URL>!
     
     // MARK: Public Methods
     func load(at url: URL, to destinationURL: URL, with exist: (URL) -> Bool, completion: @escaping (Result<URL>) -> ()) {
         callCount += 1
-        completion(.success(URL(string: "https://developer.apple.com")!))
+        expectedURL = url
+        expectedDestinationURL = destinationURL
+        completion(givenResult)
     }
     
-    func verify(file: FileString = #file, line: UInt = #line) {
+    func verify(url: URL, destinationURL: URL, file: FileString = #file, line: UInt = #line) {
         expect(self.callCount, file: file, line: line).to(equal(1))
+        expect(self.expectedURL, file: file, line: line).to(equal(url))
+        expect(self.expectedDestinationURL, file: file, line: line).to(equal(destinationURL))
     }
 }

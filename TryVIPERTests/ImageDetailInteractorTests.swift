@@ -13,10 +13,11 @@ import Nimble
 // MARK: - Image Detail Interactor Tests
 class ImageDetailInteractorTests: QuickSpec {
     override func spec() {
+        let tweet = ImageTweet.forTest
         var interactor: ImageDetailInteractor!
         
         beforeEach {
-            interactor = ImageDetailInteractor(tweet: .empty)
+            interactor = ImageDetailInteractor(tweet: tweet)
         }
         
         afterEach {
@@ -29,10 +30,12 @@ class ImageDetailInteractorTests: QuickSpec {
                 interactor.output = mockOutput
                 
                 let mockImageProvide = MockImageProvider()
+                let url = URL(string: "https://developer.apple.com")!
+                mockImageProvide.givenResult = .success(url)
                 interactor.downloadImage(with: mockImageProvide)
                 
                 mockOutput.verify()
-                mockImageProvide.verify()
+                mockImageProvide.verify(url: tweet.largeMediaURL, destinationURL: tweet.fileURL(with: "large"))
             }
         }
     }
@@ -40,8 +43,8 @@ class ImageDetailInteractorTests: QuickSpec {
 
 // MARK: - Image Tweet Extension
 extension ImageTweet {
-    static var empty: ImageTweet {
-        return ImageTweet(twitterID: "", text: "", mediaURLString: "", userName: "", userScreenName: "", userProfileImageURLString: "", createdAt: "")
+    static var forTest: ImageTweet {
+        return ImageTweet(twitterID: "999", text: "This is a tweet.", mediaURLString: "https://developer.apple.com", userName: "shenghuawu", userScreenName: "sheng", userProfileImageURLString: "https://developer.apple.com", createdAt: "123456789")
     }
 }
 
