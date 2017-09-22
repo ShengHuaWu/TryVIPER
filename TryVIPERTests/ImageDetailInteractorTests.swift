@@ -30,12 +30,11 @@ class ImageDetailInteractorTests: QuickSpec {
                 interactor.output = mockOutput
                 
                 let mockImageProvide = MockImageProvider()
-                let url = URL(string: "https://developer.apple.com")!
-                mockImageProvide.givenResult = .success(url)
+                mockImageProvide.givenResult = .success(tweet.fileURL(with: "large"))
                 interactor.downloadImage(with: mockImageProvide)
                 
-                mockOutput.verify(hasError: false)
                 mockImageProvide.verify(url: tweet.largeMediaURL, destinationURL: tweet.fileURL(with: "large"))
+                mockOutput.verify(url: tweet.fileURL(with: "large"))
             }
             
             it("failure") {
@@ -46,8 +45,8 @@ class ImageDetailInteractorTests: QuickSpec {
                 mockImageProvide.givenResult = .failure(SerializationError.missing("token"))
                 interactor.downloadImage(with: mockImageProvide)
                 
-                mockOutput.verify(hasError: true)
                 mockImageProvide.verify(url: tweet.largeMediaURL, destinationURL: tweet.fileURL(with: "large"))
+                mockOutput.verify(hasError: true)
             }
         }
     }
@@ -65,10 +64,12 @@ final class MockImageDetailInteractorOutput: ImageDetailInteractorOutput {
     // MARK: Properties
     private var callCount = 0
     private var hasError = false
+    private var expectedURL: URL!
     
     // MARK: Public Methods
     func endDownloadingImage(to url: URL) {
         callCount += 1
+        expectedURL = url
     }
     
     func has(error: Error) {
@@ -76,8 +77,11 @@ final class MockImageDetailInteractorOutput: ImageDetailInteractorOutput {
         hasError = true
     }
     
-    func verify(hasError: Bool, file: FileString = #file, line: UInt = #line) {
+    func verify(hasError: Bool = false, url: URL? = nil, file: FileString = #file, line: UInt = #line) {
         expect(self.callCount, file: file, line: line).to(equal(1))
         expect(self.hasError, file: file, line: line).to(equal(hasError))
+        
+        let predicate = url == nil ? beNil() : equal(url)
+        expect(self.expectedURL, file: file, line: line).to(predicate)
     }
 }

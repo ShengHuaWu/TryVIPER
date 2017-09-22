@@ -51,7 +51,7 @@ final class ImageListInteractorSpec: QuickSpec {
                 interactor.fetchBearerToken(with: mockWebService)
                 
                 mockWebService.verify(url: bearerToken().url)
-                mockOutput.verify(hasError: false)
+                mockOutput.verify()
             }
             
             it("failure") {
@@ -81,7 +81,7 @@ final class ImageListInteractorSpec: QuickSpec {
                 interactor.fetchTweets(with: mockWebService)
                 
                 mockWebService.verify(url: ImageTweet.tweets.url)
-                mockOutput.verify(hasError: false, tweets: tweetsForTest)
+                mockOutput.verify(tweets: tweetsForTest)
             }
             
             it("failure") {
@@ -122,7 +122,7 @@ final class MockImageListInteractorOutput: ImageListInteractorOutput {
         hasError = true
     }
     
-    func verify(hasError: Bool, tweets: [ImageTweet] = [], file: FileString = #file, line: UInt = #line) {
+    func verify(hasError: Bool = false, tweets: [ImageTweet] = [], file: FileString = #file, line: UInt = #line) {
         expect(self.callCount, file: file, line: line).to(equal(1))
         expect(self.hasError, file: file, line: line).to(equal(hasError))
         expect(self.expectedTweets.count, file: file, line: line).to(equal(tweets.count))
