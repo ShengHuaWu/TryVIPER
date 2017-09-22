@@ -70,8 +70,10 @@ final class ImageListInteractorSpec: QuickSpec {
         
         describe("fetch tweets") { 
             it("success") {
+                let tweetsForTest = [ImageTweet.forTest]
+                
                 let mockWebService = MockWebService<[ImageTweet]>()
-                mockWebService.givenResult = .success([])
+                mockWebService.givenResult = .success(tweetsForTest)
                 
                 let mockOutput = MockImageListInteractorOutput()
                 interactor.output = mockOutput
@@ -79,7 +81,7 @@ final class ImageListInteractorSpec: QuickSpec {
                 interactor.fetchTweets(with: mockWebService)
                 
                 mockWebService.verify(url: ImageTweet.tweets.url)
-                mockOutput.verify(hasError: false)
+                mockOutput.verify(hasError: false, tweets: tweetsForTest)
             }
             
             it("failure") {
@@ -103,6 +105,7 @@ final class MockImageListInteractorOutput: ImageListInteractorOutput {
     // MARK: Properties
     private var callCount = 0
     private var hasError = false
+    private var expectedTweets: [ImageTweet] = []
     
     // MARK: Public Methods
     func endFetchingToken() {
@@ -111,6 +114,7 @@ final class MockImageListInteractorOutput: ImageListInteractorOutput {
     
     func endFetching(tweets: [ImageTweet]) {
         callCount += 1
+        expectedTweets = tweets
     }
     
     func has(error: Error) {
@@ -118,8 +122,9 @@ final class MockImageListInteractorOutput: ImageListInteractorOutput {
         hasError = true
     }
     
-    func verify(hasError: Bool, file: FileString = #file, line: UInt = #line) {
+    func verify(hasError: Bool, tweets: [ImageTweet] = [], file: FileString = #file, line: UInt = #line) {
         expect(self.callCount, file: file, line: line).to(equal(1))
         expect(self.hasError, file: file, line: line).to(equal(hasError))
+        expect(self.expectedTweets.count, file: file, line: line).to(equal(tweets.count))
     }
 }
