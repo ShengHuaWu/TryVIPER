@@ -14,9 +14,12 @@ import Nimble
 final class ImageListInteractorSpec: QuickSpec {
     override func spec() {
         var interactor: ImageListInteractor!
+        var mockImageProvider: MockImageProvider!
+        let tweetForTest = ImageTweet.forTest
         
         beforeEach {
-            interactor = ImageListInteractor()
+            mockImageProvider = MockImageProvider()
+            interactor = ImageListInteractor(imageProvider: mockImageProvider)
         }
         
         afterEach {
@@ -70,7 +73,7 @@ final class ImageListInteractorSpec: QuickSpec {
         
         describe("fetch tweets") { 
             it("success") {
-                let tweetsForTest = [ImageTweet.forTest]
+                let tweetsForTest = [tweetForTest]
                 
                 let mockWebService = MockWebService<[ImageTweet]>()
                 mockWebService.givenResult = .success(tweetsForTest)
@@ -97,6 +100,41 @@ final class ImageListInteractorSpec: QuickSpec {
                 mockOutput.verify(hasError: true)
             }
         }
+        
+        describe("download image") {
+            it("suspend & resume") {
+                interactor.suspendDownloadingImage()
+                interactor.resumeDownloadingImage()
+                
+                mockImageProvider.verify(callCount: 2)
+            }
+            
+            it("success") {
+                let url = tweetForTest.mediaURL
+                let destinationURL = tweetForTest.fileURL()
+                mockImageProvider.givenResult = .success(destinationURL)
+                
+                let mockOutput = MockImageListInteractorOutput()
+                interactor.output = mockOutput
+                
+                interactor.downloadImage(for: tweetForTest)
+                
+                mockImageProvider.verify(url: url, destinationURL: destinationURL)
+                mockOutput.verify(tweet: tweetForTest)
+            }
+            
+            it("failure") {
+                mockImageProvider.givenResult = .failure(SerializationError.missing("token"))
+
+                let mockOutput = MockImageListInteractorOutput()
+                interactor.output = mockOutput
+                
+                interactor.downloadImage(for: tweetForTest)
+                
+                mockImageProvider.verify(url: tweetForTest.mediaURL, destinationURL: tweetForTest.fileURL())
+                mockOutput.verify(hasError: true)
+            }
+        }
     }
 }
 
@@ -106,6 +144,7 @@ final class MockImageListInteractorOutput: ImageListInteractorOutput {
     private var callCount = 0
     private var hasError = false
     private var expectedTweets: [ImageTweet] = []
+    private var expectedTweet: ImageTweet!
     
     // MARK: Public Methods
     func endFetchingToken() {
@@ -117,14 +156,22 @@ final class MockImageListInteractorOutput: ImageListInteractorOutput {
         expectedTweets = tweets
     }
     
+    func endDownloadingImage(for tweet: ImageTweet) {
+        callCount += 1
+        expectedTweet = tweet
+    }
+    
     func has(error: Error) {
         callCount += 1
         hasError = true
     }
     
-    func verify(hasError: Bool = false, tweets: [ImageTweet] = [], file: FileString = #file, line: UInt = #line) {
+    func verify(hasError: Bool = false, tweets: [ImageTweet] = [], tweet: ImageTweet? = nil, file: FileString = #file, line: UInt = #line) {
         expect(self.callCount, file: file, line: line).to(equal(1))
         expect(self.hasError, file: file, line: line).to(equal(hasError))
         expect(self.expectedTweets.count, file: file, line: line).to(equal(tweets.count))
+        
+        let predicate = tweet == nil ? beNil() : equal(tweet?.twitterID)
+        expect(self.expectedTweet?.twitterID, file: file, line: line).to(predicate)
     }
 }

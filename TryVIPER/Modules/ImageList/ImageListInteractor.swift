@@ -12,6 +12,7 @@ import Foundation
 protocol ImageListInteractorOutput: class {
     func endFetchingToken()
     func endFetching(tweets: [ImageTweet])
+    func endDownloadingImage(for tweet: ImageTweet)
     func has(error: Error)
 }
 
@@ -19,6 +20,12 @@ protocol ImageListInteractorOutput: class {
 final class ImageListInteractor {
     // MARK: Properties
     weak var output: ImageListInteractorOutput?
+    private let imageProvider: ImageProviderProtocol
+    
+    // MARK: Designated Initializer
+    init(imageProvider: ImageProviderProtocol = ImageProvider()) {
+        self.imageProvider = imageProvider
+    }
     
     // MARK: Public Methods
     func hasToken(in userDefaults: UserDefaults = UserDefaults.standard) -> Bool {
@@ -45,5 +52,39 @@ final class ImageListInteractor {
                 self?.output?.has(error: error)
             }
         }
+    }
+    
+    func downloadImage(for tweet: ImageTweet) {
+        imageProvider.load(at: tweet.mediaURL, to: tweet.fileURL()) { [weak self] (result) in
+            switch result {
+            case .success:
+                self?.output?.endDownloadingImage(for: tweet)
+            case .failure(let error):
+                self?.output?.has(error: error)
+            }
+        }
+    }
+    
+    func suspendDownloadingImage() {
+        imageProvider.suspendLoading()
+    }
+    
+    func resumeDownloadingImage() {
+        imageProvider.resumeLoading()
+    }
+}
+
+// MARK: - Image Tweet Extension
+extension ImageTweet {
+    var mediaURL: URL {
+        return URL(string: mediaURLString)!
+    }
+    
+    func fileURL(with suffix: String = "", userDefaults: UserDefaults = UserDefaults.standard) -> URL {
+        guard let directoryURL = userDefaults.temporaryDirectoryURL() else {
+            fatalError("Tempoaray directory doesn'r exist.")
+        }
+        
+        return directoryURL.appendingPathComponent(twitterID + suffix)
     }
 }

@@ -79,18 +79,3 @@ final class ImageListViewModel {
         imageProvider.resumeLoading()
     }
 }
-
-// MARK: - Image Tweet Extension
-extension ImageTweet {
-    var mediaURL: URL {
-        return URL(string: mediaURLString)!
-    }
-    
-    func fileURL(with suffix: String = "", userDefaults: UserDefaults = UserDefaults.standard) -> URL {
-        guard let directoryURL = userDefaults.temporaryDirectoryURL() else {
-            fatalError("Tempoaray directory doesn'r exist.")
-        }
-        
-        return directoryURL.appendingPathComponent(twitterID + suffix)
-    }
-}

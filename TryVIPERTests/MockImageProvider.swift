@@ -24,9 +24,21 @@ final class MockImageProvider: ImageProviderProtocol {
         completion(givenResult)
     }
     
-    func verify(url: URL, destinationURL: URL, file: FileString = #file, line: UInt = #line) {
-        expect(self.callCount, file: file, line: line).to(equal(1))
-        expect(self.expectedURL, file: file, line: line).to(equal(url))
-        expect(self.expectedDestinationURL, file: file, line: line).to(equal(destinationURL))
+    func suspendLoading() {
+        callCount += 1
+    }
+    
+    func resumeLoading() {
+        callCount += 1
+    }
+    
+    func verify(callCount: Int = 1, url: URL? = nil, destinationURL: URL? = nil, file: FileString = #file, line: UInt = #line) {
+        expect(self.callCount, file: file, line: line).to(equal(callCount))
+        
+        let urlPredicate = url == nil ? beNil() : equal(url)
+        expect(self.expectedURL, file: file, line: line).to(urlPredicate)
+        
+        let destinationURLPredicate = destinationURL == nil ? beNil() : equal(destinationURL)
+        expect(self.expectedDestinationURL, file: file, line: line).to(destinationURLPredicate)
     }
 }

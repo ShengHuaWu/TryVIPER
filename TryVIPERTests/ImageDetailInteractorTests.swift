@@ -29,23 +29,24 @@ class ImageDetailInteractorTests: QuickSpec {
                 let mockOutput = MockImageDetailInteractorOutput()
                 interactor.output = mockOutput
                 
-                let mockImageProvide = MockImageProvider()
-                mockImageProvide.givenResult = .success(tweet.fileURL(with: "large"))
-                interactor.downloadImage(with: mockImageProvide)
+                let destinationURL = tweet.fileURL(with: "large")
+                let mockImageProvider = MockImageProvider()
+                mockImageProvider.givenResult = .success(destinationURL)
+                interactor.downloadImage(with: mockImageProvider)
                 
-                mockImageProvide.verify(url: tweet.largeMediaURL, destinationURL: tweet.fileURL(with: "large"))
-                mockOutput.verify(url: tweet.fileURL(with: "large"))
+                mockImageProvider.verify(url: tweet.largeMediaURL, destinationURL: destinationURL)
+                mockOutput.verify(url: destinationURL)
             }
             
             it("failure") {
                 let mockOutput = MockImageDetailInteractorOutput()
                 interactor.output = mockOutput
                 
-                let mockImageProvide = MockImageProvider()
-                mockImageProvide.givenResult = .failure(SerializationError.missing("token"))
-                interactor.downloadImage(with: mockImageProvide)
+                let mockImageProvider = MockImageProvider()
+                mockImageProvider.givenResult = .failure(SerializationError.missing("token"))
+                interactor.downloadImage(with: mockImageProvider)
                 
-                mockImageProvide.verify(url: tweet.largeMediaURL, destinationURL: tweet.fileURL(with: "large"))
+                mockImageProvider.verify(url: tweet.largeMediaURL, destinationURL: tweet.fileURL(with: "large"))
                 mockOutput.verify(hasError: true)
             }
         }

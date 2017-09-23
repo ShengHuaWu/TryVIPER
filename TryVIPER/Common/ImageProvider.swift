@@ -59,6 +59,8 @@ final class ImageProvider {
 protocol ImageProviderProtocol {
     func load(at url: URL, to destinationURL: URL, completion: @escaping (Result<URL>) -> ())
     func load(at url: URL, to destinationURL: URL, with exist: (URL) -> Bool, completion: @escaping (Result<URL>) -> ())
+    func suspendLoading()
+    func resumeLoading()
 }
 
 extension ImageProviderProtocol {
