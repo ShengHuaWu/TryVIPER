@@ -8,26 +8,19 @@
 
 import Foundation
 
-// MARK: - Image List Interactor Output
-protocol ImageListInteractorOutput: class {
-    func endFetchingToken()
-    func endFetching(tweets: [ImageTweet])
-    func endDownloadingImage(for tweet: ImageTweet)
-    func has(error: Error)
-}
-
 // MARK: - Image List Interactor
 final class ImageListInteractor {
     // MARK: Properties
     weak var output: ImageListInteractorOutput?
-    private let imageProvider: ImageProviderProtocol
+    fileprivate let imageProvider: ImageProviderProtocol
     
     // MARK: Designated Initializer
     init(imageProvider: ImageProviderProtocol = ImageProvider()) {
         self.imageProvider = imageProvider
     }
-    
-    // MARK: Public Methods
+}
+
+extension ImageListInteractor: ImageListInteractorInput {
     func hasToken(in userDefaults: UserDefaults = UserDefaults.standard) -> Bool {
         return userDefaults.bearerToken() != nil ? true : false
     }

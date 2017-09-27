@@ -27,6 +27,8 @@
 		9B4BE8121F668B4C005F66FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9B4BE8101F668B4C005F66FF /* LaunchScreen.storyboard */; };
 		9B5402661F6E1A1100ADA179 /* ImageListInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B5402651F6E1A1100ADA179 /* ImageListInteractor.swift */; };
 		9B54026C1F6E20C900ADA179 /* MockWebService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B54026B1F6E20C900ADA179 /* MockWebService.swift */; };
+		9B9FACAD1F7B7C2200E3A4F8 /* ImageListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B9FACAC1F7B7C2200E3A4F8 /* ImageListPresenter.swift */; };
+		9B9FACAF1F7B7D7E00E3A4F8 /* ImageListInteractorIO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B9FACAE1F7B7D7E00E3A4F8 /* ImageListInteractorIO.swift */; };
 		9BE945EC1F6E5B840076736A /* Nimble.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BE945EA1F6E5B840076736A /* Nimble.framework */; };
 		9BE945ED1F6E5B840076736A /* Quick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BE945EB1F6E5B840076736A /* Quick.framework */; };
 		9BE945F31F6E5BDD0076736A /* Nimble.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9BE945EA1F6E5B840076736A /* Nimble.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -85,6 +87,8 @@
 		9B4BE81E1F668B4C005F66FF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9B5402651F6E1A1100ADA179 /* ImageListInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ImageListInteractor.swift; path = Modules/ImageList/ImageListInteractor.swift; sourceTree = "<group>"; };
 		9B54026B1F6E20C900ADA179 /* MockWebService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockWebService.swift; sourceTree = "<group>"; };
+		9B9FACAC1F7B7C2200E3A4F8 /* ImageListPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ImageListPresenter.swift; path = Modules/ImageList/ImageListPresenter.swift; sourceTree = "<group>"; };
+		9B9FACAE1F7B7D7E00E3A4F8 /* ImageListInteractorIO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ImageListInteractorIO.swift; path = Modules/ImageList/ImageListInteractorIO.swift; sourceTree = "<group>"; };
 		9BE945EA1F6E5B840076736A /* Nimble.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Nimble.framework; path = Carthage/Build/iOS/Nimble.framework; sourceTree = "<group>"; };
 		9BE945EB1F6E5B840076736A /* Quick.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quick.framework; path = Carthage/Build/iOS/Quick.framework; sourceTree = "<group>"; };
 		9BE945F51F6E5C760076736A /* ImageListInteractorSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageListInteractorSpec.swift; sourceTree = "<group>"; };
@@ -213,7 +217,9 @@
 		9B5402681F6E1A2B00ADA179 /* ImageList */ = {
 			isa = PBXGroup;
 			children = (
+				9B9FACAE1F7B7D7E00E3A4F8 /* ImageListInteractorIO.swift */,
 				9B5402651F6E1A1100ADA179 /* ImageListInteractor.swift */,
+				9B9FACAC1F7B7C2200E3A4F8 /* ImageListPresenter.swift */,
 			);
 			name = ImageList;
 			sourceTree = "<group>";
@@ -343,6 +349,8 @@
 				9B1095A41F6B79D100194927 /* ImageProvider.swift in Sources */,
 				9B1095AD1F6B79D100194927 /* ImageListViewController.swift in Sources */,
 				9B1095AB1F6B79D100194927 /* ImageDetailViewModel.swift in Sources */,
+				9B9FACAF1F7B7D7E00E3A4F8 /* ImageListInteractorIO.swift in Sources */,
+				9B9FACAD1F7B7C2200E3A4F8 /* ImageListPresenter.swift in Sources */,
 				9B1095A81F6B79D100194927 /* UIAlertController+Helpers.swift in Sources */,
 				9B1095A51F6B79D100194927 /* ImageTweet.swift in Sources */,
 				9B1095AA1F6B79D100194927 /* ImageDetailViewController.swift in Sources */,
