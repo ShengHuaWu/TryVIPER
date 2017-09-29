@@ -1,8 +1,8 @@
 //
-//  ImageDetailInteractorTests.swift
+//  ImageDetailInteractorSpec.swift
 //  TryVIPER
 //
-//  Created by ShengHua Wu on 20/09/2017.
+//  Created by ShengHua Wu on 29/09/2017.
 //  Copyright © 2017 ShengHua Wu. All rights reserved.
 //
 
@@ -10,8 +10,8 @@ import Quick
 import Nimble
 @testable import TryVIPER
 
-// MARK: - Image Detail Interactor Tests
-class ImageDetailInteractorTests: QuickSpec {
+// MARK: - Image Detail Interactor Spec
+class ImageDetailInteractorSpec: QuickSpec {
     override func spec() {
         let tweet = ImageTweet.forTest
         var interactor: ImageDetailInteractor!
@@ -24,7 +24,7 @@ class ImageDetailInteractorTests: QuickSpec {
             interactor = nil
         }
         
-        describe("download image") { 
+        describe("download image") {
             it("success") {
                 let mockOutput = MockImageDetailInteractorOutput()
                 interactor.output = mockOutput
