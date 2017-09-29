@@ -14,6 +14,11 @@ protocol ImageListUserInterface: class {
     func show(error: Error)
 }
 
+// MARK: Image List Module Interface
+protocol ImageListModuleInterface: class {
+    func updateUserInterface()
+}
+
 // MARK: - Image List Presenter
 final class ImageListPresenter {
     // MARK: Properties
@@ -21,9 +26,19 @@ final class ImageListPresenter {
     weak var userInterface: ImageListUserInterface?
 }
 
+extension ImageListPresenter: ImageListModuleInterface {
+    func updateUserInterface() {
+        if let hasToken = interactor?.hasToken(), hasToken {
+            interactor?.fetchTweets()
+        } else {
+            interactor?.fetchBearToken()
+        }
+    }
+}
+
 extension ImageListPresenter: ImageListInteractorOutput {
     func endFetchingToken() {
-        
+        interactor?.fetchTweets()
     }
     
     func endFetching(tweets: [ImageTweet]) {
@@ -31,7 +46,7 @@ extension ImageListPresenter: ImageListInteractorOutput {
     }
     
     func endDownloadingImage(for tweet: ImageTweet) {
-        
+        // TODO: Load image from url with userInterface
     }
     
     func has(error: Error) {

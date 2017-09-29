@@ -11,7 +11,9 @@ import Foundation
 // MARK: - Image List Interactor Input
 protocol ImageListInteractorInput: class {
     func hasToken(in userDefaults: UserDefaults) -> Bool
+    func fetchBearToken()
     func fetchBearerToken(with webService: WebServiceProtocol)
+    func fetchTweets()
     func fetchTweets(with webService: WebServiceProtocol)
     func downloadImage(for tweet: ImageTweet)
     func suspendDownloadingImage()
