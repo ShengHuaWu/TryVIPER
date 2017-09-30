@@ -45,6 +45,30 @@ class ImageListPresenterSpec: QuickSpec {
                 mockInteractor.verify()
             }
         }
+        
+        describe("image list interactor output") { 
+            it("end fetching token") {
+                presenter.endFetchingToken()
+                
+                mockInteractor.verify(hasTokenCallCount: 0)
+            }
+            
+            it("end fetching tweets") {
+                let tweetsForTesting = [ImageTweet.forTest]
+                
+                presenter.endFetching(tweets: tweetsForTesting)
+                
+                mockUserInterface.verify(tweetsCount: tweetsForTesting.count)
+            }
+            
+            it("has error") {
+                let error = SerializationError.missing("nothing")
+                
+                presenter.has(error: error)
+                
+                mockUserInterface.verify(hasError: true)
+            }
+        }
     }
 }
 
@@ -99,17 +123,23 @@ private final class MockImageListInteractorInput: ImageListInteractorInput {
 private final class MockImageListUserInterface: ImageListUserInterface {
     // MARK: Properties
     private var callCount = 0
+    private var expectedTweets: [ImageTweet] = []
+    private var hasError = false
     
     // MARK: Public Methods
     func show(tweets: [ImageTweet]) {
         callCount += 1
+        expectedTweets = tweets
     }
     
     func show(error: Error) {
         callCount += 1
+        hasError = true
     }
     
-    func verify(file: FileString = #file, line: UInt = #line) {
+    func verify(tweetsCount: Int = 0, hasError: Bool = false, file: FileString = #file, line: UInt = #line) {
         expect(self.callCount, file: file, line: line).to(equal(1))
+        expect(self.expectedTweets.count, file: file, line: line).to(equal(tweetsCount))
+        expect(self.hasError, file: file, line: line).to(equal(hasError))
     }
 }
