@@ -44,6 +44,18 @@ class ImageListPresenterSpec: QuickSpec {
                 
                 mockInteractor.verify()
             }
+            
+            it("suspend downloading") {
+                presenter.suspendDownloading()
+                
+                mockInteractor.verify(hasTokenCallCount: 0)
+            }
+            
+            it("resume downloading"){
+                presenter.resumeDownloading()
+                
+                mockInteractor.verify(hasTokenCallCount: 0)
+            }
         }
         
         describe("image list interactor output") { 
@@ -77,6 +89,7 @@ private final class MockImageListInteractorInput: ImageListInteractorInput {
     // MARK: Properties
     private var hasTokenCallCount = 0
     private var callCount = 0
+    private var expectedTweet: ImageTweet?
     var givenHasToken: Bool = false
     
     // MARK: Public Methods
@@ -102,20 +115,23 @@ private final class MockImageListInteractorInput: ImageListInteractorInput {
     }
     
     func downloadImage(for tweet: ImageTweet) {
-        
+        expectedTweet = tweet
     }
     
     func suspendDownloadingImage() {
-        
+        callCount += 1
     }
     
     func resumeDownloadingImage() {
-        
+        callCount += 1
     }
     
-    func verify(hasTokenCallCount: Int = 1, file: FileString = #file, line: UInt = #line) {
+    func verify(hasTokenCallCount: Int = 1, tweet: ImageTweet? = nil, file: FileString = #file, line: UInt = #line) {
         expect(self.hasTokenCallCount, file: file, line: line).to(equal(hasTokenCallCount))
         expect(self.callCount, file: file, line: line).to(equal(1))
+        
+        let predicate = tweet == nil ? beNil() : equal(tweet?.twitterID)
+        expect(self.expectedTweet?.twitterID, file: file, line: line).to(predicate)
     }
 }
 

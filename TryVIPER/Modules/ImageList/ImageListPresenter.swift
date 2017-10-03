@@ -17,6 +17,8 @@ protocol ImageListUserInterface: class {
 // MARK: Image List Module Interface
 protocol ImageListModuleInterface: class {
     func updateUserInterface()
+    func suspendDownloading()
+    func resumeDownloading()
 }
 
 // MARK: - Image List Presenter
@@ -33,6 +35,14 @@ extension ImageListPresenter: ImageListModuleInterface {
         } else {
             interactor?.fetchBearToken()
         }
+    }
+    
+    func suspendDownloading() {
+        interactor?.suspendDownloadingImage()
+    }
+    
+    func resumeDownloading() {
+        interactor?.resumeDownloadingImage()
     }
 }
 

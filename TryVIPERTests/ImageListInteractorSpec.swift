@@ -39,7 +39,10 @@ final class ImageListInteractorSpec: QuickSpec {
             }
             
             it("not exist") {
-                expect(interactor.hasToken()).to(equal(false))
+                let userDefaults = UserDefaults(suiteName: "com.shenghuawu.tryviper")!
+                userDefaults.removePersistentDomain(forName: "com.shenghuawu.tryviper")
+                
+                expect(interactor.hasToken(in: userDefaults)).to(equal(false))
             }
         }
         
