@@ -56,7 +56,7 @@ final class ImageListViewController: UIViewController {
     }
     
     // MARK: Actions
-    func fetchTweetsAction(sender: UIRefreshControl) {
+    @objc func fetchTweetsAction(sender: UIRefreshControl) {
         fetchTweets()
     }
     

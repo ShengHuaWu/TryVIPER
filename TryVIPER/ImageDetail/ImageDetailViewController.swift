@@ -63,7 +63,7 @@ final class ImageDetailViewController: UIViewController {
         guard let text = textLabel.text else { return }
         
         let size = CGSize(width: view.bounds.width - margin * 2.0, height: view.bounds.height)
-        let rect = text.boundingRect(with: size, options: .usesLineFragmentOrigin, attributes: [NSFontAttributeName : textLabel.font], context: nil)
+        let rect = text.boundingRect(with: size, options: .usesLineFragmentOrigin, attributes: [NSAttributedStringKey.font : textLabel.font], context: nil)
         textLabel.frame = CGRect(x: margin, y: view.bounds.height - margin - rect.height, width: rect.width, height: rect.height)
     }
     
