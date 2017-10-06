@@ -45,6 +45,14 @@ class ImageListPresenterSpec: QuickSpec {
                 mockInteractor.verify()
             }
             
+            it("download image") {
+                let tweetForTesting = ImageTweet.forTest
+                
+                presenter.downloadImage(for: tweetForTesting)
+                
+                mockInteractor.verify(hasTokenCallCount: 0, tweet: tweetForTesting)
+            }
+            
             it("suspend downloading") {
                 presenter.suspendDownloading()
                 
@@ -115,6 +123,7 @@ private final class MockImageListInteractorInput: ImageListInteractorInput {
     }
     
     func downloadImage(for tweet: ImageTweet) {
+        callCount += 1
         expectedTweet = tweet
     }
     
