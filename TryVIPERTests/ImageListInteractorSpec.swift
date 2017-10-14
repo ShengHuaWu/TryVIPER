@@ -26,19 +26,17 @@ final class ImageListInteractorSpec: QuickSpec {
             interactor = nil
         }
         
-        describe("token") {
-            it("exist") {
+        describe(".hasToken") {
+            it("has token if userDefaults set bearer token") {
                 let userDefaults = UserDefaults(suiteName: #file)!
                 userDefaults.removePersistentDomain(forName: #file)
 
                 userDefaults.setBearerToken("abcdefgh1234567")
                 
                 expect(interactor.hasToken(in: userDefaults)).to(equal(true))
-                
-                userDefaults.removePersistentDomain(forName: #file)
             }
             
-            it("not exist") {
+            it("doesn't has token if userDefaults doesn't set bearer token") {
                 let userDefaults = UserDefaults(suiteName: "com.shenghuawu.tryviper")!
                 userDefaults.removePersistentDomain(forName: "com.shenghuawu.tryviper")
                 
@@ -46,8 +44,17 @@ final class ImageListInteractorSpec: QuickSpec {
             }
         }
         
-        describe("fetch bearer token") { 
-            it("success") {
+        describe(".fetchBearerToken") {
+            it ("asks webService to load with bearer token url") {
+                let mockWebService = MockWebService<Bool>()
+                mockWebService.givenResult = .success(true)
+
+                interactor.fetchBearerToken(with: mockWebService)
+                
+                mockWebService.verify(url: bearerToken().url)
+            }
+            
+            it("asks output to end fetching token if webService load succeeds") {
                 let mockWebService = MockWebService<Bool>()
                 mockWebService.givenResult = .success(true)
                 
@@ -56,11 +63,10 @@ final class ImageListInteractorSpec: QuickSpec {
                 
                 interactor.fetchBearerToken(with: mockWebService)
                 
-                mockWebService.verify(url: bearerToken().url)
                 mockOutput.verify()
             }
             
-            it("failure") {
+            it("asks output to has error if webService load fails") {
                 let mockWebService = MockWebService<Bool>()
                 mockWebService.givenResult = .failure(SerializationError.missing("token"))
                 
@@ -69,13 +75,21 @@ final class ImageListInteractorSpec: QuickSpec {
                 
                 interactor.fetchBearerToken(with: mockWebService)
                 
-                mockWebService.verify(url: bearerToken().url)
                 mockOutput.verify(hasError: true)
             }
         }
         
-        describe("fetch tweets") { 
-            it("success") {
+        describe(".fetchTweets") {
+            it("asks webService to load with image tweets url") {
+                let mockWebService = MockWebService<[ImageTweet]>()
+                mockWebService.givenResult = .success([tweetForTest])
+
+                interactor.fetchTweets(with: mockWebService)
+                
+                mockWebService.verify(url: ImageTweet.tweets.url)
+            }
+            
+            it("asks output to end fetching tweets if webService load succeeds") {
                 let tweetsForTest = [tweetForTest]
                 
                 let mockWebService = MockWebService<[ImageTweet]>()
@@ -86,11 +100,10 @@ final class ImageListInteractorSpec: QuickSpec {
                 
                 interactor.fetchTweets(with: mockWebService)
                 
-                mockWebService.verify(url: ImageTweet.tweets.url)
                 mockOutput.verify(tweets: tweetsForTest)
             }
             
-            it("failure") {
+            it("asks output to has error if webService load fails") {
                 let mockWebService = MockWebService<[ImageTweet]>()
                 mockWebService.givenResult = .failure(SerializationError.missing("token"))
                 
@@ -99,21 +112,36 @@ final class ImageListInteractorSpec: QuickSpec {
                 
                 interactor.fetchTweets(with: mockWebService)
                 
-                mockWebService.verify(url: ImageTweet.tweets.url)
                 mockOutput.verify(hasError: true)
             }
         }
         
-        describe("download image") {
-            it("suspend & resume") {
+        describe(".suspendDownloadingImage") {
+            it("asks imageProvider to suspend loading") {
                 interactor.suspendDownloadingImage()
+                
+                mockImageProvider.verify(callCount: 1)
+            }
+        }
+        
+        describe(".resumeDownloadingImage") {
+            it("asks imageProvider to resume loading") {
                 interactor.resumeDownloadingImage()
                 
-                mockImageProvider.verify(callCount: 2)
+                mockImageProvider.verify(callCount: 1)
+            }
+        }
+        
+        describe(".downloadImage") {
+            it("asks imageProvider to load with image url") {
+                mockImageProvider.givenResult = .success(tweetForTest.fileURL())
+                
+                interactor.downloadImage(for: tweetForTest)
+
+                mockImageProvider.verify(url: tweetForTest.mediaURL, destinationURL: tweetForTest.fileURL())                
             }
             
-            it("success") {
-                let url = tweetForTest.mediaURL
+            it("asks output to end downloading image if imageProvider load succeeds") {
                 let destinationURL = tweetForTest.fileURL()
                 mockImageProvider.givenResult = .success(destinationURL)
                 
@@ -122,11 +150,10 @@ final class ImageListInteractorSpec: QuickSpec {
                 
                 interactor.downloadImage(for: tweetForTest)
                 
-                mockImageProvider.verify(url: url, destinationURL: destinationURL)
                 mockOutput.verify(tweet: tweetForTest)
             }
             
-            it("failure") {
+            it("asks output to has error if imageProvider load fails") {
                 mockImageProvider.givenResult = .failure(SerializationError.missing("token"))
 
                 let mockOutput = MockImageListInteractorOutput()
@@ -134,7 +161,6 @@ final class ImageListInteractorSpec: QuickSpec {
                 
                 interactor.downloadImage(for: tweetForTest)
                 
-                mockImageProvider.verify(url: tweetForTest.mediaURL, destinationURL: tweetForTest.fileURL())
                 mockOutput.verify(hasError: true)
             }
         }
