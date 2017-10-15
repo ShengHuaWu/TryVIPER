@@ -30,58 +30,68 @@ class ImageListPresenterSpec: QuickSpec {
             presenter = nil
         }
         
-        describe("image list module interface") {
-            it("update user interface without token") {
+        describe(".updateUserInterface") {
+            it("asks interactor to fetch bearer token if token doesn't exist") {
                 presenter.updateUserInterface()
                 
                 mockInteractor.verify()
             }
             
-            it("update user interface with token") {
+            it("asks interactor to fetch tweets if token exists") {
                 mockInteractor.givenHasToken = true
                 
                 presenter.updateUserInterface()
                 
                 mockInteractor.verify()
             }
-            
-            it("download image") {
+        }
+        
+        describe(".downloadImage") {
+            it("asks interactor to download image") {
                 let tweetForTesting = ImageTweet.forTest
                 
                 presenter.downloadImage(for: tweetForTesting)
                 
                 mockInteractor.verify(hasTokenCallCount: 0, tweet: tweetForTesting)
             }
-            
-            it("suspend downloading") {
+        }
+        
+        describe(".suspendDownloading") {
+            it("asks interactor to suspend downloading") {
                 presenter.suspendDownloading()
                 
                 mockInteractor.verify(hasTokenCallCount: 0)
             }
-            
-            it("resume downloading"){
+        }
+        
+        describe(".resumeDownloading") {
+            it("asks interactor to resume downloading"){
                 presenter.resumeDownloading()
                 
                 mockInteractor.verify(hasTokenCallCount: 0)
             }
         }
         
-        describe("image list interactor output") { 
-            it("end fetching token") {
+        describe(".endFetchingToken") {
+            it("asks interactor to fetch tweet") {
                 presenter.endFetchingToken()
                 
                 mockInteractor.verify(hasTokenCallCount: 0)
             }
-            
-            it("end fetching tweets") {
+        }
+        
+        describe(".endFetchingTweets") {
+            it("asks userInterface to show tweets") {
                 let tweetsForTesting = [ImageTweet.forTest]
                 
                 presenter.endFetching(tweets: tweetsForTesting)
                 
                 mockUserInterface.verify(tweetsCount: tweetsForTesting.count)
             }
-            
-            it("has error") {
+        }
+        
+        describe(".hasError") {
+            it("asks userInterface to show error") {
                 let error = SerializationError.missing("nothing")
                 
                 presenter.has(error: error)

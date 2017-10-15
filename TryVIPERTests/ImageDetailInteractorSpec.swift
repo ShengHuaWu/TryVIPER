@@ -24,21 +24,31 @@ class ImageDetailInteractorSpec: QuickSpec {
             interactor = nil
         }
         
-        describe("download image") {
-            it("success") {
+        describe(".downloadImage") {
+            it("asks imageProvider to load") {
+                let destinationURL = tweet.fileURL(with: "large")
+                let mockImageProvider = MockImageProvider()
+                mockImageProvider.givenResult = .success(destinationURL)
+                
+                interactor.downloadImage(with: mockImageProvider)
+                
+                mockImageProvider.verify(url: tweet.largeMediaURL, destinationURL: destinationURL)
+            }
+            
+            it("asks output to end downloading image if imageProvider load succeeds") {
                 let mockOutput = MockImageDetailInteractorOutput()
                 interactor.output = mockOutput
                 
                 let destinationURL = tweet.fileURL(with: "large")
                 let mockImageProvider = MockImageProvider()
                 mockImageProvider.givenResult = .success(destinationURL)
+                
                 interactor.downloadImage(with: mockImageProvider)
                 
-                mockImageProvider.verify(url: tweet.largeMediaURL, destinationURL: destinationURL)
                 mockOutput.verify(url: destinationURL)
             }
             
-            it("failure") {
+            it("asks output to has error if imageProvider load fails") {
                 let mockOutput = MockImageDetailInteractorOutput()
                 interactor.output = mockOutput
                 
@@ -46,7 +56,6 @@ class ImageDetailInteractorSpec: QuickSpec {
                 mockImageProvider.givenResult = .failure(SerializationError.missing("token"))
                 interactor.downloadImage(with: mockImageProvider)
                 
-                mockImageProvider.verify(url: tweet.largeMediaURL, destinationURL: tweet.fileURL(with: "large"))
                 mockOutput.verify(hasError: true)
             }
         }
